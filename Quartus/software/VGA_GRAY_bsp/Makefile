@@ -101,7 +101,7 @@ ACDS_VERSION := 16.1
 # BUILD_NUMBER: 196
 
 SETTINGS_FILE := settings.bsp
-SOPC_FILE := C:/src/KAU_EMBEDED_19/SOPCINFO_FILE/VGA_GRAY.sopcinfo
+SOPC_FILE := C:/src/KAU_EMBEDED_19/Quartus/SOPCINFO_FILE/VGA_GRAY.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS

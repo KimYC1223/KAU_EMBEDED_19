@@ -86,7 +86,7 @@ ACDS_VERSION := 16.1
 
 # Qsys--generated SOPCINFO file. Required for resolving node instance ID's with 
 # design component names. 
-SOPCINFO_FILE := C:/src/KAU_EMBEDED_19/SOPCINFO_FILE/VGA_GRAY.sopcinfo
+SOPCINFO_FILE := C:/src/KAU_EMBEDED_19/Quartus/SOPCINFO_FILE/VGA_GRAY.sopcinfo
 
 # Big-Endian operation. 
 # setting BIG_ENDIAN is false

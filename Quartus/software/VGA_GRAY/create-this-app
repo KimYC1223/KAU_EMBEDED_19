@@ -3,8 +3,8 @@
 # This script creates the hello_world application in this directory.
 
 
-BSP_DIR=C:/src/KAU_EMBEDED_19/VGA_GRAY_bsp/
-QUARTUS_PROJECT_DIR=C:/src/KAU_EMBEDED_19/SOPCINFO_FILE/
+BSP_DIR=C:/src/KAU_EMBEDED_19/Quartus/software/VGA_GRAY_bsp/
+QUARTUS_PROJECT_DIR=C:/src/KAU_EMBEDED_19/Quartus/SOPCINFO_FILE/
 NIOS2_APP_GEN_ARGS="--elf-name VGA_GRAY.elf --set OBJDUMP_INCLUDE_SOURCE 1 --src-files hello_world.c"
 
 

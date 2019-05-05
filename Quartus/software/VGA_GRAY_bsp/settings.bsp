@@ -2,11 +2,11 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>May 6, 2019 12:32:43 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1557070363844</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>C:\src\KAU_EMBEDED_19\VGA_GRAY_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>May 6, 2019 3:55:08 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1557082508282</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\src\KAU_EMBEDED_19\Quartus\software\VGA_GRAY_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
-        <SopcDesignFile>C:\src\KAU_EMBEDED_19\SOPCINFO_FILE\VGA_GRAY.sopcinfo</SopcDesignFile>
+        <SopcDesignFile>C:\src\KAU_EMBEDED_19\Quartus\SOPCINFO_FILE\VGA_GRAY.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>Nios2</Cpu>
         <SchemaVersion>1.9</SchemaVersion>

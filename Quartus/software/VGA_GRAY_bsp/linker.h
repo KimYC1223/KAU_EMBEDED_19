@@ -2,9 +2,9 @@
  * linker.h - Linker script mapping information
  *
  * Machine generated for CPU 'Nios2' in SOPC Builder design 'Computer_System'
- * SOPC Builder design path: C:/src/KAU_EMBEDED_19/SOPCINFO_FILE/VGA_GRAY.sopcinfo
+ * SOPC Builder design path: C:/src/KAU_EMBEDED_19/Quartus/SOPCINFO_FILE/VGA_GRAY.sopcinfo
  *
- * Generated: Mon May 06 00:25:51 KST 2019
+ * Generated: Mon May 06 03:38:32 KST 2019
  */
 
 /*
@@ -84,8 +84,8 @@
 
 #define ALT_EXCEPTIONS_DEVICE SDRAM
 #define ALT_RESET_DEVICE SDRAM
-#define ALT_RODATA_DEVICE ARM_A9_HPS_AXI_SDRAM
-#define ALT_RWDATA_DEVICE ARM_A9_HPS_AXI_SDRAM
+#define ALT_RODATA_DEVICE SDRAM
+#define ALT_RWDATA_DEVICE SDRAM
 #define ALT_TEXT_DEVICE SDRAM
 
 

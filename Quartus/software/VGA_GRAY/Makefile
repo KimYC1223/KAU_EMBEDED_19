@@ -177,7 +177,7 @@ CRT0 :=
 SYS_LIB :=
 
 # Define path to the root of the BSP.
-BSP_ROOT_DIR := C:/src/KAU_EMBEDED_19/VGA_GRAY_bsp/
+BSP_ROOT_DIR := C:/src/KAU_EMBEDED_19/Quartus/software/VGA_GRAY_bsp/
 
 # List of application specific include directories, library directories and library names
 APP_INCLUDE_DIRS :=
@@ -188,7 +188,7 @@ APP_LIBRARY_NAMES :=
 BUILD_PRE_PROCESS :=
 BUILD_POST_PROCESS :=
 
-QUARTUS_PROJECT_DIR := C:/src/KAU_EMBEDED_19/SOPCINFO_FILE/
+QUARTUS_PROJECT_DIR := C:/src/KAU_EMBEDED_19/Quartus/SOPCINFO_FILE/
 
 
 #END GENERATED

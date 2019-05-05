@@ -2,9 +2,9 @@
  * system.h - SOPC Builder system and BSP software package information
  *
  * Machine generated for CPU 'Nios2' in SOPC Builder design 'Computer_System'
- * SOPC Builder design path: C:/src/KAU_EMBEDED_19/SOPCINFO_FILE/VGA_GRAY.sopcinfo
+ * SOPC Builder design path: C:/src/KAU_EMBEDED_19/Quartus/SOPCINFO_FILE/VGA_GRAY.sopcinfo
  *
- * Generated: Mon May 06 00:25:51 KST 2019
+ * Generated: Mon May 06 03:38:04 KST 2019
  */
 
 /*

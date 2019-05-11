@@ -4,7 +4,7 @@
  * Machine generated for CPU 'Nios2' in SOPC Builder design 'Computer_System'
  * SOPC Builder design path: C:/src/KAU_EMBEDED_19/Quartus/SOPCINFO_FILE/DEFAULT_SETTING.sopcinfo
  *
- * Generated: Wed May 08 14:35:17 KST 2019
+ * Generated: Thu May 09 12:59:51 KST 2019
  */
 
 /*
@@ -607,7 +607,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/SysID"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1557236680
+#define SYSID_TIMESTAMP 1482268809
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 

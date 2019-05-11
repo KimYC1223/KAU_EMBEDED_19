@@ -3,7 +3,7 @@
 # Machine generated for CPU 'Nios2' in SOPC Builder design 'Computer_System'
 # SOPC Builder design path: C:/src/KAU_EMBEDED_19/Quartus/SOPCINFO_FILE/DEFAULT_SETTING.sopcinfo
 #
-# Generated: Wed May 08 14:35:17 KST 2019
+# Generated: Thu May 09 12:59:51 KST 2019
 
 # DO NOT MODIFY THIS FILE
 #

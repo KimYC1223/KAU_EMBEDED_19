@@ -13,16 +13,17 @@ extern void HEX_PrintHEX(int number1, int number2, int number3);
 #define BUF_SIZE 500000
 #define BUF_THRESHOLD 96
 
-int record = 0, play = 0, buffer_index = 0;
+int Audio_Recording = 0, Audio_Playing = 0, buffer_index = 0;
 unsigned int l_buf[2][BUF_SIZE];
 unsigned int r_buf[2][BUF_SIZE];
 volatile int sr = 0;
+volatile int AUDIO_Check = 0;
 volatile int echo = 0;
 
 void Audio_ISR()
 {
    ////recored////
-   if (record == 1 && mode == 4)
+   if (Audio_Recording == 1 && mode == 4)
    {
       *(pLED) = 0x1;
       if (buffer_index < BUF_SIZE)
@@ -35,13 +36,14 @@ void Audio_ISR()
       else if (buffer_index >= BUF_SIZE)
       {
          *(pAudio) = 0;
-         record = 0;
+         Audio_Recording = 0;
          *(pLED) = 0;
          HEX_PrintHEX(40,0,0);
+
       }
    }
    ////audio play////
-   else if ((play==1))
+   else if ((Audio_Playing==1))
    {
       *(pLED) = 0x2;
 

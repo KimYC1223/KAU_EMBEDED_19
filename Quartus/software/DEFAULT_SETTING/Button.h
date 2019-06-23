@@ -5,7 +5,7 @@
 extern volatile int * pKEY;
 extern volatile int * pSwitch;
 extern volatile int * pLED;
-extern volatile int VGA_IsAlarmSettingMode;
+extern volatile int VGA_Floating;
 extern volatile int VGA_IsAlarmMode;
 
 //==========================================================================
@@ -22,6 +22,7 @@ extern void CLOCK_SettingUp();
 extern void CLOCK_SettingDown();
 extern void CLOCK_SettingMove();
 extern void CLOCK_SettingSave();
+extern void CLOCK_DummySetting();
 //==========================================================================
 
 void Pushbutton_ISR();
@@ -52,7 +53,9 @@ void Pushbutton_ISR()
 	   else if ((swval == 4) && (key_value == 8)) mode = 3;
 	   else if ((swval == 8) && (key_value == 8)) mode = 4;
 
-	   if (mode == 2) VGA_IsAlarmSettingMode = 1;
+	   if (mode == 1) { VGA_DummySetting(); VGA_Floating = 1; }
+	   else if (mode == 2) VGA_Floating = 2;
+
 	   return;
    }
 

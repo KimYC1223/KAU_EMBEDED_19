@@ -142,7 +142,8 @@ ACDS_VERSION := 16.1
 ELF := DEFAULT_SETTING.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := main.c
+C_SRCS += main.c
+C_SRCS += TEM_HUE.c
 CXX_SRCS :=
 ASM_SRCS :=
 

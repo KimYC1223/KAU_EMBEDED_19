@@ -17,14 +17,18 @@ volatile int alarm_time[6] = { 0,0,0,0,0,0 };
 extern volatile int *pixel_ctrl_ptr;
 extern volatile int pixel_buffer_start;
 extern volatile int VGA_DrawMode;
-extern void VGA_ClockDraw_L(int drawType, int cursorPos, timeSet currentTime);
-extern void VGA_AlarmDraw(int drawType, int cursorPos, timeSet alarmTime);
+extern void VGA_ClockDraw_S(int drawType, timeSet currentTime);
+extern void VGA_ClockSettingDraw(int cursorPos, timeSet currentTime);
+extern void VGA_AlarmDraw_S(int cursorPos, timeSet alarmTime);
+extern void VGA_TemDraw(int drawType);
+extern void VGA_HumDraw(int drawType);
 extern void clear_screen();
-extern volatile int VGA_IsAlarmSettingMode;
+extern volatile int VGA_Floating;
 extern volatile int VGA_IsAlarmMode;
 extern int mode;
 
 timeSet currentTime;
+timeSet dummyTime;
 timeSet alarmTime;
 int alarm_cur = 0;
 int set_cur = 0;
@@ -33,25 +37,7 @@ int LargeNumber = 0;
 
 void Timer_ISR() {
 	*pTimer = 0;
-	pixel_buffer_start = *(pixel_ctrl_ptr + 1);
-	clear_screen();
-
-	small_sec++;
-	if (small_sec == 2) {
-		add_sec();
-		small_sec = 0;
-	}
-
-	if (LargeNumber != 0) {
-		if (VGA_IsAlarmSettingMode != 0)
-			VGA_AlarmDraw_L(VGA_DrawMode,0,alarmTime);
-		else VGA_ClockDraw_L(VGA_DrawMode,0,currentTime);
-	} else {
-		if (VGA_IsAlarmSettingMode != 0)
-			VGA_AlarmDraw_S(VGA_DrawMode,0,alarmTime);
-		else VGA_ClockDraw_S(VGA_DrawMode,0,currentTime);
-	}
-	wait_for_vsync();
+	add_sec();
 }
 
 void Init_timer() {
@@ -64,7 +50,6 @@ void Init_timer() {
 	currentTime.min = 0 ;
 	currentTime.sec = 0 ;
 }
-
 
 int change_num(int max, int val, int ud)
 {
@@ -149,7 +134,7 @@ void ALARM_SettingMove() {
 
 void ALARM_SettingSave() {
 	VGA_IsAlarmMode = 1;
-	VGA_IsAlarmSettingMode = 0;
+	VGA_Floating = 0;
 	mode = 0;
 }
 
@@ -165,10 +150,10 @@ void CLOCK_SettingUp() {
 		else max = 10;
 	}
 	set_time[set_cur] = change_num(max, set_time[set_cur], 1);
-	currentTime.sec = set_time[1] * 10 + set_time[0];
-	currentTime.min = set_time[3] * 10 + set_time[2];
-	currentTime.hour = set_time[5] * 10 + set_time[4];
-	if (((currentTime.sec > 0) || (currentTime.min > 0)) && (currentTime.hour > 23))currentTime.hour = currentTime.hour - 24;
+	dummyTime.sec = set_time[1] * 10 + set_time[0];
+	dummyTime.min = set_time[3] * 10 + set_time[2];
+	dummyTime.hour = set_time[5] * 10 + set_time[4];
+	if (((dummyTime.sec > 0) || (dummyTime.min > 0)) && (dummyTime.hour > 23))dummyTime.hour = dummyTime.hour - 24;
 }
 
 void CLOCK_SettingDown() {
@@ -183,10 +168,10 @@ void CLOCK_SettingDown() {
 		else max = 10;
 	}
 	set_time[set_cur] = change_num(max, set_time[set_cur], 2);
-	currentTime.sec = set_time[1] * 10 + set_time[0];
-	currentTime.min = set_time[3] * 10 + set_time[2];
-	currentTime.hour = set_time[5] * 10 + set_time[4];
-	if (((currentTime.sec > 0) || (currentTime.min > 0)) && (currentTime.hour > 23))currentTime.hour = currentTime.hour - 24;
+	dummyTime.sec = set_time[1] * 10 + set_time[0];
+	dummyTime.min = set_time[3] * 10 + set_time[2];
+	dummyTime.hour = set_time[5] * 10 + set_time[4];
+	if (((dummyTime.sec > 0) || (dummyTime.min > 0)) && (dummyTime.hour > 23))dummyTime.hour = dummyTime.hour - 24;
 }
 
 void CLOCK_SettingMove() {
@@ -195,11 +180,22 @@ void CLOCK_SettingMove() {
 }
 
 void CLOCK_SettingSave() {
+	currentTime.hour = dummyTime.hour;
+	currentTime.min = dummyTime.min;
+	currentTime.sec = dummyTime.sec;
+	VGA_Floating= 0;
 	mode = 0;
 }
 
+void CLOCK_DummySetting() {
+	dummyTime.hour = currentTime.hour;
+	dummyTime.min = currentTime.min;
+	dummyTime.sec = currentTime.sec;
+}
+
 void Alarm_Checking() {
-	if (VGA_IsAlarmMode == 0) return;
+	if (VGA_IsAlarmMode == 0 && currentTime.hour == dummyTime.hour && currentTime.min == dummyTime.min) return;
 	VGA_IsAlarmMode = 0;
+	mode = 4;
 	Audio_Play();
 }

@@ -5,7 +5,7 @@ obj/default/main.o: main.c VGA.h Timer.h \
  c:\src\kau_embeded_19\quartus\software\default_setting_bsp\hal\inc\nios2.h \
  c:\src\kau_embeded_19\quartus\software\default_setting_bsp\hal\inc\alt_types.h \
  c:\src\kau_embeded_19\quartus\software\default_setting_bsp\hal\inc\priv\alt_legacy_irq.h \
- Img.h Audio.h Button.h
+ Img.h Audio.h Button.h Video.h
 
 VGA.h:
 
@@ -28,3 +28,5 @@ Img.h:
 Audio.h:
 
 Button.h:
+
+Video.h:

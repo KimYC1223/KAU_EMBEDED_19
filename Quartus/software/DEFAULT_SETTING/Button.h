@@ -7,6 +7,7 @@ extern volatile int * pSwitch;
 extern volatile int * pLED;
 extern volatile int VGA_Floating;
 extern volatile int VGA_IsAlarmMode;
+extern volatile int sr;
 
 //==========================================================================
 //  다른 C 파일에서 가져오는 부분
@@ -18,11 +19,13 @@ extern void ALARM_SettingUp();
 extern void ALARM_SettingDown();
 extern void ALARM_SettingMove();
 extern void ALARM_SettingSave();
+extern void ALARM_DummySetting();
 extern void CLOCK_SettingUp();
 extern void CLOCK_SettingDown();
 extern void CLOCK_SettingMove();
 extern void CLOCK_SettingSave();
 extern void CLOCK_DummySetting();
+extern void VIDEO_Resize();
 //==========================================================================
 
 void Pushbutton_ISR();
@@ -53,9 +56,14 @@ void Pushbutton_ISR()
 	   else if ((swval == 4) && (key_value == 8)) mode = 3;
 	   else if ((swval == 8) && (key_value == 8)) mode = 4;
 
-	   if (mode == 1) { VGA_DummySetting(); VGA_Floating = 1; }
-	   else if (mode == 2) VGA_Floating = 2;
-
+	   if (mode == 0)	   { VGA_Floating = 0;  }
+	   else if (mode == 1) { CLOCK_DummySetting(); VGA_Floating = 1; }
+	   else if (mode == 2) { ALARM_DummySetting(); VGA_Floating = 2; }
+	   if (mode == 3)	   { VGA_Floating = 0;  }
+	   else if (mode == 4) {
+		   if (sr ==0) VGA_Floating = 3;
+		   else VGA_Floating = 4;
+	   }
 	   return;
    }
 
@@ -75,7 +83,7 @@ void Pushbutton_ISR()
 			 printf("common key 1\n");
 		  }
 		  else if(key_value == 4)
-			 VGA_IsAlarmMode = VGA_IsAlarmMode ^ 1;
+			 VGA_IsAlarmMode = 0;
 		  else if(key_value == 8)
 			  mode = 99;
 	   }
@@ -112,20 +120,28 @@ void Pushbutton_ISR()
 	   //	MODE 3 : 카메라 설정 모드 ( 레이아웃 설정 모드 )
 	   //====================================================================================
 	   else if (mode == 3) {
-		   if (key_value == 1) {}
+		   if (key_value == 1) {
+			   //VIDEO_Resize();
+		   }
 		   else if (key_value == 2) {}
 		   else if (key_value == 4) {}
-		   else if (key_value == 8) {}
+		   else if (key_value == 8) {  mode = 0;}
 	   }
 	   
 	   //====================================================================================
 	   //	MODE 4 : 오디오 설정 모드
 	   //====================================================================================
-	   else if(mode == 3 ) {
-		   if (key_value == 1)
+	   else if(mode == 4 ) {
+		   if (key_value == 1){
 			   Audio_Record();
-		   else if (key_value == 2)
+			   if (sr ==0 )VGA_Floating = 3;
+			   else VGA_Floating = 4;
+		   }
+		   else if (key_value == 2){
+			   if (sr ==0 )VGA_Floating = 5;
+			   else VGA_Floating = 6;
 			   Audio_Play();
+		   }
 		   else if (key_value == 4)
 			   Audio_Change();
 		   else if (key_value == 8) {
